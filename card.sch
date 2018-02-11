@@ -15561,7 +15561,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="R2" library="resistor" deviceset="R-US_" device="M0805"/>
 <part name="R3" library="resistor" deviceset="R-US_" device="M0805"/>
 <part name="R4" library="resistor" deviceset="R-US_" device="M0805"/>
-<part name="C1" library="resistor" deviceset="C-US" device="C0805"/>
+<part name="C1" library="resistor" deviceset="C-US" device="C0805" value="1u"/>
 <part name="G1" library="battery" deviceset="B2430UNI" device=""/>
 <part name="SW1" library="adafruit" deviceset="SPST_TACT" device="-EVQQ2"/>
 <part name="SW2" library="adafruit" deviceset="SPST_TACT" device="-EVQQ2"/>
@@ -15591,7 +15591,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="R6" library="resistor" deviceset="R-US_" device="M0805" value="10k"/>
 <part name="R7" library="resistor" deviceset="R-US_" device="M0805" value="10k"/>
 <part name="R8" library="resistor" deviceset="R-US_" device="M0805" value="10k"/>
-<part name="C2" library="resistor" deviceset="C-US" device="C0805"/>
+<part name="C2" library="resistor" deviceset="C-US" device="C0805" value="1u"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
@@ -15610,7 +15610,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="R14" library="resistor" deviceset="R-US_" device="M0805" value="10k"/>
 <part name="R16" library="resistor" deviceset="R-US_" device="M0805" value="10k"/>
 <part name="R17" library="resistor" deviceset="R-US_" device="M0805" value="10k"/>
-<part name="C3" library="resistor" deviceset="C-US" device="C0805"/>
+<part name="C3" library="resistor" deviceset="C-US" device="C0805" value="1u"/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="R18" library="resistor" deviceset="R-US_" device="M0805" value="470k"/>
 <part name="R19" library="resistor" deviceset="R-US_" device="M0805" value="470k"/>
@@ -15626,9 +15626,9 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="+3V11" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="C5" library="adafruit" deviceset="CPOL-US" device="A/3216-18R"/>
-<part name="C4" library="adafruit" deviceset="C-US" device="C0805K"/>
-<part name="C6" library="adafruit" deviceset="C-US" device="C0805K"/>
-<part name="C7" library="adafruit" deviceset="C-US" device="C0805K"/>
+<part name="C4" library="adafruit" deviceset="C-US" device="C0805K" value="100n"/>
+<part name="C6" library="adafruit" deviceset="C-US" device="C0805K" value="100n"/>
+<part name="C7" library="adafruit" deviceset="C-US" device="C0805K" value="100n"/>
 <part name="+3V12" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="+3V13" library="supply1" deviceset="+3V3" device=""/>
@@ -15641,8 +15641,8 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="+3V16" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND23" library="supply1" deviceset="GND" device=""/>
-<part name="C8" library="adafruit" deviceset="C-US" device="C0805K"/>
-<part name="C9" library="adafruit" deviceset="C-US" device="C0805K"/>
+<part name="C8" library="adafruit" deviceset="C-US" device="C0805K" value="100n"/>
+<part name="C9" library="adafruit" deviceset="C-US" device="C0805K" value="100n"/>
 <part name="+3V7" library="supply1" deviceset="+3V3" device=""/>
 <part name="+3V8" library="supply1" deviceset="+3V3" device=""/>
 <part name="J1" library="con-amp" deviceset="MTA03-100" device=""/>
