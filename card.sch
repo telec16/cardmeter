@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.6.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -198,6 +198,22 @@
 <rectangle x1="0.635" y1="10.795" x2="3.175" y2="14.605" layer="40"/>
 <rectangle x1="40.005" y1="30.48" x2="42.545" y2="34.29" layer="40"/>
 <rectangle x1="40.005" y1="10.795" x2="42.545" y2="14.605" layer="40"/>
+<wire x1="0.635" y1="34.29" x2="0.635" y2="30.48" width="0" layer="20"/>
+<wire x1="0.635" y1="30.48" x2="1.905" y2="30.48" width="0" layer="20"/>
+<wire x1="1.905" y1="30.48" x2="1.905" y2="34.29" width="0" layer="20"/>
+<wire x1="1.905" y1="34.29" x2="0.635" y2="34.29" width="0" layer="20"/>
+<wire x1="0.635" y1="14.605" x2="0.635" y2="10.795" width="0" layer="20"/>
+<wire x1="0.635" y1="10.795" x2="1.905" y2="10.795" width="0" layer="20"/>
+<wire x1="1.905" y1="10.795" x2="1.905" y2="14.605" width="0" layer="20"/>
+<wire x1="1.905" y1="14.605" x2="0.635" y2="14.605" width="0" layer="20"/>
+<wire x1="41.275" y1="14.605" x2="42.545" y2="14.605" width="0" layer="20"/>
+<wire x1="42.545" y1="14.605" x2="42.545" y2="10.795" width="0" layer="20"/>
+<wire x1="42.545" y1="10.795" x2="41.275" y2="10.795" width="0" layer="20"/>
+<wire x1="41.275" y1="10.795" x2="41.275" y2="14.605" width="0" layer="20"/>
+<wire x1="42.545" y1="30.48" x2="42.545" y2="34.29" width="0" layer="20"/>
+<wire x1="42.545" y1="34.29" x2="41.275" y2="34.29" width="0" layer="20"/>
+<wire x1="41.275" y1="34.29" x2="41.275" y2="30.48" width="0" layer="20"/>
+<wire x1="41.275" y1="30.48" x2="42.545" y2="30.48" width="0" layer="20"/>
 </package>
 <package name="MSOP10">
 <wire x1="-1.5" y1="-1.5" x2="1.5" y2="-1.5" width="0.2032" layer="51"/>
