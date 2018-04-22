@@ -13,6 +13,7 @@
 
 
 void screenSetup();
+void testLCD();
 
 void clearLCD();
 void setCoord(uint8_t x, uint8_t y);

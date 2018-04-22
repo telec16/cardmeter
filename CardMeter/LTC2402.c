@@ -1,8 +1,11 @@
 #include "LTC2402.h"
 
-#define SCK 3//PA3
+#define SCK 3 //PA3
+#define SCK_P VPORTA.OUT
 #define SDO 2//PA2
+#define SDO_P VPORTA.IN
 #define CS 0//PC0
+#define CS_P VPORTC.OUT
 
 void getData(uint32_t *ch0, uint32_t *ch1)
 {
@@ -42,9 +45,12 @@ boolean ready()
 {
 	boolean r = FALSE;
 
-	_CLR(VPORTC.OUT, CS);
-	r = _GET(VPORTA.IN, SDO);
-	_SET(VPORTC.OUT, CS);
+	_CLR(SCK_P, SCK);
+	_delay_us(1);
+	_CLR(CS_P, CS);
+	_delay_us(1);
+	r = _GET(SDO_P, SDO);
+	_SET(CS_P, CS);
 
 	return r;
 }
@@ -54,17 +60,19 @@ uint32_t readAll()
 	uint8_t i;
 	uint32_t data=0;
 
-	_CLR(VPORTA.OUT, SCK);
-	_CLR(VPORTC.OUT, CS);
+	_CLR(SCK_P, SCK);
+	_CLR(CS_P, CS);
 
 	for(i=0; i<32; i++)
 	{
-		_SET(VPORTA.OUT, SCK);
-		_CLR(VPORTA.OUT, SCK);
-		data = (data<<1) | _GET(VPORTA.IN, SDO);
+		_SET(SCK_P, SCK);
+		_delay_us(1);
+		_CLR(SCK_P, SCK);
+		_delay_us(1);
+		data = (data<<1) | _GET(SDO_P, SDO);
 	}
 
-	_SET(VPORTC.OUT, CS);
+	_SET(CS_P, CS);
 
 	return data;
 }

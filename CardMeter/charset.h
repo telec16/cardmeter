@@ -3,5 +3,4 @@
 
 extern const char asciiTable[];
 
-
 #endif /* CHARSET_H_ */

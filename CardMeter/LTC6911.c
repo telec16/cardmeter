@@ -5,7 +5,7 @@
 
 void setValue(uint8_t val)
 {
-	VPORTB.OUT = (VPORTB.OUT & ~GAIN_MASK) | ((val << GAIN_PIN) & GAIN_MASK);
+	VPORTA.OUT = (VPORTA.OUT & ~GAIN_MASK) | ((val << GAIN_PIN) & GAIN_MASK);
 }
 
 void changeGain(Gain gain)

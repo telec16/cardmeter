@@ -13,4 +13,9 @@
 #define _CLIP(min, v, max)	_MIN(_MAX(v, min), max)
 
 
+#define _SW1	_GET(PORTB.IN, 0)
+#define _SW2	_GET(PORTB.IN, 1)
+#define _SW3	_GET(PORTB.IN, 2)
+#define _SW4	_GET(PORTB.IN, 3)
+
 #endif /* UTILS_H_ */

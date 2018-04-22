@@ -11,11 +11,32 @@
 
 #include "NOKIA3310.h"
 
-#define CLK 3//PA3
+#define CLK 3 //PA3
+#define CLK_P VPORTA.OUT
 #define DIN 1//PA1
+#define DIN_P VPORTA.OUT
 #define DC 3//PC3
+#define DC_P VPORTC.OUT
 #define RST 2//PC2
+#define RST_P VPORTC.OUT
 #define CS 1//PC1
+#define CS_P VPORTC.OUT
+
+//H=0
+#define FUN_SET 0b00100000
+#define DIS_CON 0b00001000
+#define SET_Y	0b01000000
+#define SET_X	0b10000000
+//H=1
+#define TMP_CON 0b00000100
+#define BIAS	0b00010000
+#define VOP		0b10000000
+
+#define H	(1<<0)
+#define V	(1<<1) //Addressing
+#define PD	(1<<2) //_Active
+#define E	(1<<0) //Invert
+#define D	(1<<2) //_Blanking
 
 typedef enum{CMD, DAT} DC_t;
 
@@ -25,46 +46,78 @@ void writebyte(uint8_t in, DC_t dc, boolean hold);
 
 void screenSetup()
 {
-	_SET(VPORTC.OUT, CS);
+	_SET(CS_P, CS);
 
-	_CLR(VPORTC.OUT, RST);
 	_delay_ms(1);
-	_SET(VPORTC.OUT, RST);
+	_CLR(RST_P, RST);
+	_delay_ms(1);
+	_SET(RST_P, RST);
 
-	writebyte(0b00100001, CMD, TRUE);//PD=0 V=0 H=1
-	writebyte(0b00000101, CMD, TRUE);//TC=01
-	writebyte(0b00010101, CMD, TRUE);//BS=101
-	writebyte(0b10010011, CMD, TRUE);//Vop=0010011
-	writebyte(0b00001010, CMD, TRUE);//S=10
-	writebyte(0b00100000, CMD, TRUE);//PD=0 V=0 H=0
-	writebyte(0b00001100, CMD, TRUE);//D=1 E=0
-	writebyte(0b00010001, CMD, FALSE);//PRS=1
-	writebyte(0b10000000 | 0, CMD, TRUE);//x=0
-	writebyte(0b01000000 | 0, CMD, FALSE);//y=0
+	writebyte(FUN_SET	| H		, CMD, TRUE);//PD=0 V=0 H=1
+	writebyte(VOP		| 0x48	, CMD, TRUE);//Vop=0010011
+	writebyte(TMP_CON	| 0b11	, CMD, TRUE);//TC=01
+	writebyte(BIAS		| 0b011	, CMD, TRUE);//BS=101
+	//writebyte(0b00001010, CMD, TRUE);//S=10
+	writebyte(FUN_SET	| 0		, CMD, TRUE);//PD=0 V=0 H=0
+	writebyte(DIS_CON	| D		, CMD, FALSE);//D=1 E=0
+	//writebyte(0b00010001, CMD, FALSE);//PRS=1
+	
+	writebyte(SET_X		| 0, CMD, TRUE);//x=0
+	writebyte(SET_Y		| 0, CMD, FALSE);//y=0
 	
 	clearLCD();
 }
 
 void clearLCD()
 {
-	uint8_t i;
+	uint16_t i;
 
 	setCoord(0,0);
 
 	for (i = 0 ; i < (102 * ((LCD_H/8)+1)) ; i++)
 		writebyte(0, DAT, TRUE);
-	_SET(VPORTC.OUT, CS);
+	_SET(CS_P, CS);
+}
+
+void testLCD()
+{
+	uint8_t i;
+	
+	for(i = 0; i<5; i++)
+	{
+		writebyte(DIS_CON | E, CMD, FALSE);
+		_delay_ms(500);
+		writebyte(DIS_CON | 0, CMD, FALSE);
+		_delay_ms(500);
+	}
+	writebyte(DIS_CON | D, CMD, FALSE);
+	writebyte(SET_X	| 10, CMD, TRUE);
+	writebyte(SET_Y	| 1, CMD, FALSE);
+	
+	for(i = 0; i<5; i++)
+	{
+		writebyte(0xAA, DAT, TRUE);
+		writebyte(0x55, DAT, FALSE);
+	}
+	
+	for(i = 0; i<5; i++)
+	{
+		writebyte(DIS_CON | E | D, CMD, FALSE);
+		_delay_ms(500);
+		writebyte(DIS_CON | D, CMD, FALSE);
+		_delay_ms(500);
+	}
 }
 
 void setCoord(uint8_t x, uint8_t y)
 {
-	writebyte(0b10000000 | _CLIP(0, x, LCD_W), CMD, TRUE);
-	writebyte(0b01000000 | _CLIP(0, y, LCD_H>>3), CMD, FALSE);
+	writebyte(SET_X | _CLIP(0, x, LCD_W), CMD, TRUE);
+	writebyte(SET_Y | _CLIP(0, y, LCD_H/8), CMD, FALSE);
 }
 
 void putPicture(uint8_t picture[], uint8_t posX, uint8_t posY, uint8_t sizeX, uint8_t sizeY)
 {
-	uint8_t i;
+	uint16_t i;
 
 	posX = _CLIP(0, posX, LCD_W);
 	posY = _CLIP(0, posY, LCD_H);
@@ -76,28 +129,29 @@ void putPicture(uint8_t picture[], uint8_t posX, uint8_t posY, uint8_t sizeX, ui
 			setCoord(posX, (i/sizeX)+posY);
 		writebyte(picture[i], DAT, TRUE);
 	}
-	_SET(VPORTC.OUT, CS);
+	_SET(CS_P, CS);
 }
 
 void putString(char *str, uint8_t posX, uint8_t posY)
 {
-  posX = _CLIP(0, posX, LCD_W);
-  posY = _CLIP(0, posY, LCD_H);
-  setCoord(posX, posY);
-  
-  while(*str)
-    putChar(*str++, TRUE);
+	posX = _CLIP(0, posX, LCD_W);
+	posY = _CLIP(0, posY, LCD_H);
+	setCoord(posX, posY);
+	
+	while(*str)
+		putChar(*str++, TRUE);
 }
 void putChar(char chr, boolean space)
 {
-  for(uint8_t i = 0; i<5; i++)
-    writebyte(asciiTable[(chr-32)*5+i], DAT, TRUE);
-    
-  if(space)
-    writebyte(0, DAT, FALSE);
-    
-  _SET(VPORTC.OUT, CS);
-  _delay_us(1);
+	uint8_t i;
+	for(i = 0; i<5; i++)
+		writebyte(asciiTable[(chr-32)*5+i], DAT, TRUE);
+	
+	if(space)
+		writebyte(0, DAT, FALSE);
+	
+	_SET(CS_P, CS);
+	_delay_us(1);
 }
 
 /*
@@ -121,20 +175,23 @@ void LCD_refresh();
 //MSB first
 void writebyte(uint8_t in, DC_t dc, boolean hold)
 {
-	int8_t i;
+	uint8_t i;
   
-	_CLR(VPORTA.OUT, CLK);
-	_CLR(VPORTC.OUT, CS);
-	_CHG(VPORTC.OUT, DC, (dc == DAT));
+	_CLR(CLK_P, CLK);
+	_CLR(CS_P, CS);
+	_CHG(DC_P, DC, (dc == DAT));
 
 	for(i = 0; i<8; i++)
 	{
-		_CLR(VPORTA.OUT, CLK);
-		_CHG(VPORTA.OUT, DIN, (in >> (7-i)) & 1);
-		_SET(VPORTA.OUT, CLK);
+		_CLR(CLK_P, CLK);
+		_delay_us(1);
+		_CHG(DIN_P, DIN, (in >> (7-i)) & 1);
+		_delay_us(1);
+		_SET(CLK_P, CLK);
+		_delay_us(1);
 	}
 
 	if(hold == FALSE)
-		_SET(VPORTC.OUT, CS);
+		_SET(CS_P, CS);
 }
 

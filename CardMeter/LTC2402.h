@@ -1,8 +1,8 @@
 #ifndef LTC2402_H_
 #define LTC2402_H_
 
-#include <avr/io.h>
 #include "setup.h"
+#include <avr/io.h>
 #include "utils.h"
 
 #define ADC_EOC 31
