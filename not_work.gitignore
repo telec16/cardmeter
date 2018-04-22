@@ -1,0 +1,12 @@
+!.gitignore
+!*.md
+
+!*.brd
+!*.sch
+!*.epf
+
+!*.atsln
+!CardMeter/
+CardMeter/Debug/
+
+*
