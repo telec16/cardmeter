@@ -54,13 +54,11 @@ void screenSetup()
 	_SET(RST_P, RST);
 
 	writebyte(FUN_SET	| H		, CMD, TRUE);//PD=0 V=0 H=1
-	writebyte(VOP		| 0x48	, CMD, TRUE);//Vop=0010011
-	writebyte(TMP_CON	| 0b11	, CMD, TRUE);//TC=01
-	writebyte(BIAS		| 0b011	, CMD, TRUE);//BS=101
-	//writebyte(0b00001010, CMD, TRUE);//S=10
+	writebyte(VOP		| T_VOP	, CMD, TRUE);//Vop=0010011
+	writebyte(TMP_CON	| 0b10	, CMD, TRUE);//TC=01
+	writebyte(BIAS		| T_BIAS, CMD, TRUE);//BS=101
 	writebyte(FUN_SET	| 0		, CMD, TRUE);//PD=0 V=0 H=0
 	writebyte(DIS_CON	| D		, CMD, FALSE);//D=1 E=0
-	//writebyte(0b00010001, CMD, FALSE);//PRS=1
 	
 	writebyte(SET_X		| 0, CMD, TRUE);//x=0
 	writebyte(SET_Y		| 0, CMD, FALSE);//y=0
@@ -68,27 +66,33 @@ void screenSetup()
 	clearLCD();
 }
 
-void clearLCD()
+
+void changeVop(uint8_t vop)
 {
-	uint16_t i;
+	vop = _CLIP(0, vop, 0x40);
+	writebyte(FUN_SET | H, CMD, TRUE);
+	writebyte(VOP  |  vop, CMD, TRUE);
+	writebyte(FUN_SET | 0, CMD, FALSE);
+}
 
-	setCoord(0,0);
-
-	for (i = 0 ; i < (102 * ((LCD_H/8)+1)) ; i++)
-		writebyte(0, DAT, TRUE);
-	_SET(CS_P, CS);
+void changeBias(uint8_t bias)
+{
+	bias = _CLIP(0, bias, 7);
+	writebyte(FUN_SET | H, CMD, TRUE);
+	writebyte(BIAS | bias, CMD, TRUE);
+	writebyte(FUN_SET | 0, CMD, FALSE);
 }
 
 void testLCD()
 {
 	uint8_t i;
 	
-	for(i = 0; i<5; i++)
+	for(i = 0; i<2; i++)
 	{
 		writebyte(DIS_CON | E, CMD, FALSE);
-		_delay_ms(500);
+		_delay_ms(250);
 		writebyte(DIS_CON | 0, CMD, FALSE);
-		_delay_ms(500);
+		_delay_ms(250);
 	}
 	writebyte(DIS_CON | D, CMD, FALSE);
 	writebyte(SET_X	| 10, CMD, TRUE);
@@ -100,13 +104,24 @@ void testLCD()
 		writebyte(0x55, DAT, FALSE);
 	}
 	
-	for(i = 0; i<5; i++)
+	for(i = 0; i<2; i++)
 	{
 		writebyte(DIS_CON | E | D, CMD, FALSE);
-		_delay_ms(500);
+		_delay_ms(250);
 		writebyte(DIS_CON | D, CMD, FALSE);
-		_delay_ms(500);
+		_delay_ms(250);
 	}
+}
+
+void clearLCD()
+{
+	uint16_t i;
+
+	setCoord(0,0);
+
+	for (i = 0 ; i < (102 * ((LCD_H/8)+1)) ; i++)
+		writebyte(0, DAT, TRUE);
+	_SET(CS_P, CS);
 }
 
 void setCoord(uint8_t x, uint8_t y)

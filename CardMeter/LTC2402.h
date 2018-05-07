@@ -13,6 +13,7 @@
 
 typedef enum{CH0, CH1} ADC_CHN_t;
 typedef struct{
+	boolean EOC;
 	boolean SIG;
 	boolean EXR;
 	uint8_t subLSBs;
