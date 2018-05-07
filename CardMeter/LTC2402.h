@@ -11,11 +11,13 @@
 #define ADC_EXR 28
 #define ADC_VALUE 4
 
+#define ADC_STEP 0.000000178813934326171875
+
 typedef enum{CH0, CH1} ADC_CHN_t;
 typedef struct{
 	boolean EOC;
-	boolean SIG;
-	boolean EXR;
+	boolean SIG; /*Sign bit. 1>+*/
+	boolean EXR; /*Out of range*/
 	uint8_t subLSBs;
 }ADC_STATUS_t;
 

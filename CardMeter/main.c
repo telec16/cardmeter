@@ -10,6 +10,7 @@
 int main(void)
 {
 	uint32_t ch, data;
+	uint16_t ch0=0, ch1=0;
 	ADC_CHN_t chn;
 	ADC_STATUS_t status;
 	
@@ -20,7 +21,7 @@ int main(void)
 	pinSetup();
 	screenSetup();
 	_delay_ms(100);
-	changeGain(G1);
+	changeGain(G100);
 
 	putString("Hey !", 5*LCD_CW, 0);
 	_delay_ms(1000);
@@ -34,9 +35,9 @@ int main(void)
 		//*
 		for (int i=0; i<4; i++){
 			if(ready()){
-				putString("OK ", i*20, 1);
+				putString("OK ", i*3*LCD_CW, 1);
 			}else{
-				putString("NOK", i*20, 1);
+				putString("NOK", i*3*LCD_CW, 1);
 			}
 			_delay_ms(1);
 		}//*/
@@ -66,6 +67,16 @@ int main(void)
 		putString("OK", 10*LCD_CW, 3);
 		putString(buf, 12*LCD_CW, 3);
 		
+		if(chn == CH1)
+			ch1 = (uint16_t)(((float)ch)*ADC_STEP*1000.0);
+		else
+			ch0 = (uint16_t)(((float)ch)*ADC_STEP*1000.0);
+			
+		itoa(ch0, buf, 10);
+		putString(buf, 0, 4);
+		itoa(ch1, buf, 10);
+		putString(buf, LCD_W/2, 4);
+		
 		_delay_ms(250);
 		
 		bias = _CLIP(0, bias, 7);
@@ -83,6 +94,7 @@ int main(void)
 		putString(buf, 0, 0);
 		itoa(vop, buf, 16);
 		putString(buf, 11*LCD_CW, 0);
+
 		/*
 		getData(&ch0, &ch1);
 		PORTA.OUTTGL = 1<<7;*/
