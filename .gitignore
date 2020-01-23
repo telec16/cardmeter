@@ -1,8 +1,10 @@
-# Created by https://www.gitignore.io/api/eagle,atmelstudio
+
+# Created by https://www.gitignore.io/api/eagle,atmelstudio,kicad
+# Edit at https://www.gitignore.io/?templates=eagle,atmelstudio,kicad
 
 ### AtmelStudio ###
 ## Ignore Atmel Studio temporary files and build results
-# http://www.atmel.com/microsite/atmel_studio6/
+# https://www.microchip.com/mplab/avr-support/atmel-studio-7
 
 # Atmel Studio is powered by an older version of Visual Studio,
 # so most of the project and solution files are the same as VS files,
@@ -11,8 +13,6 @@
 #Build Directories
 [Dd]ebug/
 [Rr]elease/
-.vs/
-.vs/**
 
 #Build Results
 *.o
@@ -63,9 +63,15 @@ eagle.epf
 *.drl
 *.gpi
 *.pls
+*.ger
+*.xln
+*.gbr
 
 *.drd
 *.drd.*
+
+*.s#*
+*.b#*
 
 *.info
 
@@ -74,8 +80,49 @@ eagle.epf
 # file locks introduced since 7.x
 *.lck
 
+### KiCad ###
+# For PCBs designed using KiCad: http://www.kicad-pcb.org/
+# Format documentation: http://kicad-pcb.org/help/file-formats/
+
+# Temporary files
+*.000
+*.bak
+*.bck
+*.sch-bak
+*.kicad_pcb-bak
+*~
+_autosave-*
+*.tmp
+*-save.pro
+*-save.kicad_pcb
+fp-info-cache
+
+# Netlist files (exported from Eeschema)
+*.net
+
+# Autorouter files (exported from Pcbnew)
+*.dsn
+*.ses
+
+# Exported BOM files
+*.xml
+*.csv
+
+### KiCad Patch ###
+escue-backup/
+
+*.tsv
+bom/
+
+# Gerber export output
+out/
+gerber/
+
+# End of https://www.gitignore.io/api/eagle,atmelstudio,kicad
+
+
+
 !.gitignore
 *.zip
 
-# End of https://www.gitignore.io/api/eagle,atmelstudio
 
