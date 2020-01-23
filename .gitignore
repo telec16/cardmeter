@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/eagle,atmelstudio,kicad
-# Edit at https://www.gitignore.io/?templates=eagle,atmelstudio,kicad
+# Created by https://www.gitignore.io/api/eagle,kicad,ltspice,atmelstudio
+# Edit at https://www.gitignore.io/?templates=eagle,kicad,ltspice,atmelstudio
 
 ### AtmelStudio ###
 ## Ignore Atmel Studio temporary files and build results
@@ -116,9 +116,21 @@ bom/
 
 # Gerber export output
 out/
-gerber/
 
-# End of https://www.gitignore.io/api/eagle,atmelstudio,kicad
+### LTspice ###
+# gitignore template for LTspice
+# website: https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html
+
+# Logfile
+*.log
+
+# Simulation Outputs
+*.raw
+*.fft
+
+# Netlist
+
+# End of https://www.gitignore.io/api/eagle,kicad,ltspice,atmelstudio
 
 
 
