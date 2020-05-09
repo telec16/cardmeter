@@ -13,17 +13,17 @@
 
 #define ADC_STEP 0.000000178813934326171875
 
-typedef enum{CH0, CH1} ADC_CHN_t;
-typedef struct{
+typedef enum{CH0, CH1} LTC2402_channel_t;
+typedef struct {
 	boolean EOC;
 	boolean SIG; /*Sign bit. 1>+*/
 	boolean EXR; /*Out of range*/
 	uint8_t subLSBs;
-}ADC_STATUS_t;
+} LTC2402_status_t;
 
-void getData(uint32_t *ch0, uint32_t *ch1);
-boolean parse(uint32_t data, ADC_CHN_t *chn, ADC_STATUS_t *status, uint32_t *value);
-boolean ready();
-uint32_t readAll();
+void LTC2402_getData(uint32_t *ch0, uint32_t *ch1);
+boolean LTC2402_parse(uint32_t data, LTC2402_channel_t *chn, LTC2402_status_t *status, uint32_t *value);
+boolean LTC2402_ready();
+uint32_t LTC2402_readAll();
 
 #endif /* LTC2402_H_ */

@@ -4,18 +4,18 @@
 #include <avr/io.h>
 
 typedef enum{
-	OPEN,
-	G1,
-	G2,
-	G5,
-	G10,
-	G20,
-	G50,
-	G100
-} Gain;
+	LTC6911_OPEN,
+	LTC6911_G1,
+	LTC6911_G2,
+	LTC6911_G5,
+	LTC6911_G10,
+	LTC6911_G20,
+	LTC6911_G50,
+	LTC6911_G100
+} LTC6911_gain_t;
 
 
-void changeGain(Gain gain);
+void LTC6911_changeGain(LTC6911_gain_t gain);
 
 
 #endif /* LTC6911_H_ */

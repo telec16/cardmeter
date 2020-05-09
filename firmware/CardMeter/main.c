@@ -3,16 +3,16 @@
 #include <avr/io.h>
 #include "utils.h"
 #include "NOKIA3310.h"
-#include "LTC6911.h"
-#include "LTC2402.h"
+#include "AD8231.h"
 
+#define CS_PIN 4
 
 int main(void)
 {
 	uint32_t ch, data;
 	uint16_t ch0=0, ch1=0;
-	ADC_CHN_t chn;
-	ADC_STATUS_t status;
+	//LTC2402_channel_t chn;
+	//LTC2402_status_t status;
 	
 	uint8_t bias=T_BIAS, vop=T_VOP;
 	char buf[16];
@@ -21,7 +21,7 @@ int main(void)
 	pinSetup();
 	screenSetup();
 	_delay_ms(100);
-	changeGain(G100);
+	AD8231_changeGain(AD8231_G16, CS_PIN);
 
 	putString("Hey !", 5*LCD_CW, 0);
 	_delay_ms(1000);
@@ -32,18 +32,18 @@ int main(void)
 
     while (1) 
     {
-		//*
+		/*
 		for (int i=0; i<4; i++){
-			if(ready()){
+			if(LTC2402_ready()){
 				putString("OK ", i*3*LCD_CW, 1);
 			}else{
 				putString("NOK", i*3*LCD_CW, 1);
 			}
 			_delay_ms(1);
-		}//*/
+		}
 		
-		data = readAll();
-		parse(data, &chn, &status, &ch);
+		data = LTC2402_readAll();
+		LTC2402_parse(data, &chn, &status, &ch);
 		
 		putString("              ", 0, 2);
 		
@@ -76,6 +76,8 @@ int main(void)
 		putString(buf, 0, 4);
 		itoa(ch1, buf, 10);
 		putString(buf, LCD_W/2, 4);
+		
+		*/
 		
 		_delay_ms(250);
 		

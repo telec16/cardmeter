@@ -148,22 +148,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AD8231.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="AD8231.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="charset.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="charset.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="LTC2402.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="LTC2402.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="LTC6911.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="LTC6911.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">

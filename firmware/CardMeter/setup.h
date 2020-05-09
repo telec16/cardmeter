@@ -5,12 +5,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define PULLUPEN (1<<3)
-#define INVEN (1<<7)
-#define OSC20M (0b00<<0)
-#define PDIV2 (0b0000<<1)
-#define PEN (1<<0)
-#define IOREG 0xD8
+#define V5_F
 
 #define SW1 0
 #define SW2 1
