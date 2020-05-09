@@ -160,6 +160,12 @@
     <Compile Include="charset.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="LTC2315.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LTC2315.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>

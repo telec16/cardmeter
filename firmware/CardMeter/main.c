@@ -4,15 +4,12 @@
 #include "utils.h"
 #include "NOKIA3310.h"
 #include "AD8231.h"
+#include "LTC2315.h"
 
-#define CS_PIN 4
 
 int main(void)
 {
-	uint32_t ch, data;
-	uint16_t ch0=0, ch1=0;
-	//LTC2402_channel_t chn;
-	//LTC2402_status_t status;
+	uint16_t data, ch;
 	
 	uint8_t bias=T_BIAS, vop=T_VOP;
 	char buf[16];
@@ -21,7 +18,7 @@ int main(void)
 	pinSetup();
 	screenSetup();
 	_delay_ms(100);
-	AD8231_changeGain(AD8231_G16, CS_PIN);
+	AD8231_changeGain(AD8231_G16, CS_GAIN);
 
 	putString("Hey !", 5*LCD_CW, 0);
 	_delay_ms(1000);
@@ -32,52 +29,17 @@ int main(void)
 
     while (1) 
     {
-		/*
-		for (int i=0; i<4; i++){
-			if(LTC2402_ready()){
-				putString("OK ", i*3*LCD_CW, 1);
-			}else{
-				putString("NOK", i*3*LCD_CW, 1);
-			}
-			_delay_ms(1);
-		}
-		
-		data = LTC2402_readAll();
-		LTC2402_parse(data, &chn, &status, &ch);
+		data = LTC2315_readAll(CS_ADC);
 		
 		putString("              ", 0, 2);
 		
 		itoa(data, buf, 16);
 		putString(buf, 0, 2);
-		itoa(ch, buf, 16);
-		putString(buf, 5*LCD_CW, 2);
-		itoa(status.subLSBs, buf, 2);
-		putString(buf, 10*LCD_CW, 2);
 		
-		itoa(chn == CH1, buf, 2);
-		putString("CH", 0, 3);
-		putString(buf, 2*LCD_CW, 3);
-		itoa(status.EXR, buf, 2);
-		putString("E", 4*LCD_CW, 3);
-		putString(buf, 5*LCD_CW, 3);
-		itoa(status.SIG, buf, 2);
-		putString("S", 7*LCD_CW, 3);
-		putString(buf, 8*LCD_CW, 3);
-		itoa(status.EOC, buf, 2);
-		putString("OK", 10*LCD_CW, 3);
-		putString(buf, 12*LCD_CW, 3);
-		
-		if(chn == CH1)
-			ch1 = (uint16_t)(((float)ch)*ADC_STEP*1000.0);
-		else
-			ch0 = (uint16_t)(((float)ch)*ADC_STEP*1000.0);
+		ch = (uint16_t)(((float)data) * LTC2315_STEP * 1000.0);
 			
-		itoa(ch0, buf, 10);
+		itoa(ch, buf, 10);
 		putString(buf, 0, 4);
-		itoa(ch1, buf, 10);
-		putString(buf, LCD_W/2, 4);
-		
-		*/
 		
 		_delay_ms(250);
 		
@@ -96,10 +58,6 @@ int main(void)
 		putString(buf, 0, 0);
 		itoa(vop, buf, 16);
 		putString(buf, 11*LCD_CW, 0);
-
-		/*
-		getData(&ch0, &ch1);
-		PORTA.OUTTGL = 1<<7;*/
 		
 		/*
 		testLCD();

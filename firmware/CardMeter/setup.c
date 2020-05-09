@@ -23,6 +23,21 @@
 #define IOREG 0xD8
 
 
+// Serial
+const pin_t SCK = {.pin=3, .port=&VPORTA}; //PA3
+const pin_t SDO = {.pin=2, .port=&VPORTA}; //PA2
+const pin_t SDI = {.pin=1, .port=&VPORTA}; //PA1
+const pin_t CS_SCR = {.pin=1, .port=&VPORTC}; //PC1
+const pin_t CS_ADC = {.pin=0, .port=&VPORTC}; //PC0
+
+// Gain
+const pin_t CS_GAIN = {.pin=4, .port=&VPORTB}; //PB4
+
+// Screen
+const pin_t DC = {.pin=3, .port=&VPORTC}; //PC3
+const pin_t RST = {.pin=2, .port=&VPORTC}; //PC2
+	
+
 void clockSetup()
 {
 	CCP = IOREG;
@@ -34,80 +49,6 @@ void clockSetup()
 	CCP = IOREG;
 	CLKCTRL.MCLKLOCK = 1;
 }
-
-/* V1
- * PA7 -> x
- * PA4/5/6 -> G0/1/2
- * PA3 -> CLK
- * PA2 <- MISO
- * PA1 -> MOSI
- * PA0 <- Prog
- *
- * PB5 -> x
- * PB4 -> x
- * PB0/1/2/3 <- SW1/2/3/4
- *
- * PC3 -> D/C
- * PC2 -> RST
- * PC1 -> _CS_SCR
- * PC0 -> _CS_ADC
- */ 
-
-/* V2
- * PA7 -> x
- * PA4/5/6 -> G0/1/2
- * PA3 -> CLK
- * PA2 <- MISO
- * PA1 -> MOSI
- * PA0 <- Prog
- *
- * PB5 -> _CS_GAIN_A
- * PB4 -> _CS_GAIN_B
- * PB0/1/2/3 <- SW1/2/3/4
- *
- * PC3 -> D/C
- * PC2 -> RST
- * PC1 -> _CS_SCR
- * PC0 -> _CS_ADC
- */ 
- 
- /* V4
-  * PA7 -> _ADC_RST
-  * PA6 <- _RDY
-  * PA5 -> _ADC_CS
-  * PA4 -> _STANDBY
-  * PA3 -> CLK
-  * PA2 -> MOSI
-  * PA1 <- MISO
-  * PA0 <- Prog
-  *
-  * PB5 -> _SYNC
-  * PB4 -> x
-  * PB0/1/2/3 <- SW1/2/3/4
-  *
-  * PC3 -> D/C
-  * PC2 -> _SCR_RST
-  * PC1 -> _SCR_CS
-  * PC0 -> x					
-  */ 
- 
-/* V5 (new frontend on V2 board)
- * PA7 -> x
- * PA4/5/6 -> G0/1/2
- * PA3 -> CLK
- * PA2 <- MISO
- * PA1 -> MOSI
- * PA0 <- Prog
- *
- * PB5 -> x
- * PB4 -> _CS_GAIN
- * PB0/1/2/3 <- SW1/2/3/4
- *
- * PC3 -> D/C
- * PC2 -> RST
- * PC1 -> _CS_SCR
- * PC0 -> _CS_ADC
- */ 
  
 void pinSetup()
 {

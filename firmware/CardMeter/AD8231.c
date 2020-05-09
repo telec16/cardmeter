@@ -11,9 +11,9 @@ void setValue(uint8_t val)
 	GAIN_P = (GAIN_P & ~GAIN_MASK) | ((val << GAIN_PIN) & GAIN_MASK);
 }
 
-void AD8231_changeGain(AD8231_gain_t gain, unsigned char csPin)
+void AD8231_changeGain(AD8231_gain_t gain, pin_t csPin)
 {
-	_CLR(VPORTA.OUT, csPin);
+	_CLR_PIN(csPin);
 	
 	switch(gain){
 		case AD8231_G1:
@@ -44,6 +44,6 @@ void AD8231_changeGain(AD8231_gain_t gain, unsigned char csPin)
 		break;	
 	}
 	
-	_SET(VPORTA.OUT, csPin);
+	_SET_PIN(csPin);
 }
 

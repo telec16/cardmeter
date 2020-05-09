@@ -11,17 +11,6 @@
 
 #include "NOKIA3310.h"
 
-#define CLK 3 //PA3
-#define CLK_P VPORTA.OUT
-#define DIN 1//PA1
-#define DIN_P VPORTA.OUT
-#define DC 3//PC3
-#define DC_P VPORTC.OUT
-#define RST 2//PC2
-#define RST_P VPORTC.OUT
-#define CS 1//PC1
-#define CS_P VPORTC.OUT
-
 //H=0
 #define FUN_SET 0b00100000
 #define DIS_CON 0b00001000
@@ -46,12 +35,12 @@ void writebyte(uint8_t in, DC_t dc, boolean hold);
 
 void screenSetup()
 {
-	_SET(CS_P, CS);
+	_SET_PIN(CS_SCR);
 
 	_delay_ms(1);
-	_CLR(RST_P, RST);
+	_CLR_PIN(RST);
 	_delay_ms(1);
-	_SET(RST_P, RST);
+	_SET_PIN(RST);
 
 	writebyte(FUN_SET	| H		, CMD, TRUE);//PD=0 V=0 H=1
 	writebyte(VOP		| T_VOP	, CMD, TRUE);//Vop=0010011
@@ -121,7 +110,7 @@ void clearLCD()
 
 	for (i = 0 ; i < (102 * ((LCD_H/8)+1)) ; i++)
 		writebyte(0, DAT, TRUE);
-	_SET(CS_P, CS);
+	_SET_PIN(CS_SCR);
 }
 
 void setCoord(uint8_t x, uint8_t y)
@@ -144,7 +133,7 @@ void putPicture(uint8_t picture[], uint8_t posX, uint8_t posY, uint8_t sizeX, ui
 			setCoord(posX, (i/sizeX)+posY);
 		writebyte(picture[i], DAT, TRUE);
 	}
-	_SET(CS_P, CS);
+	_SET_PIN(CS_SCR);
 }
 
 void putString(char *str, uint8_t posX, uint8_t posY)
@@ -165,7 +154,7 @@ void putChar(char chr, boolean space)
 	if(space)
 		writebyte(0, DAT, FALSE);
 	
-	_SET(CS_P, CS);
+	_SET_PIN(CS_SCR);
 	_delay_us(1);
 }
 
@@ -192,21 +181,21 @@ void writebyte(uint8_t in, DC_t dc, boolean hold)
 {
 	uint8_t i;
   
-	_CLR(CLK_P, CLK);
-	_CLR(CS_P, CS);
-	_CHG(DC_P, DC, (dc == DAT));
+	_CLR_PIN(SCK);
+	_CLR_PIN(CS_SCR);
+	_CHG_PIN(DC, (dc == DAT));
 
 	for(i = 0; i<8; i++)
 	{
-		_CLR(CLK_P, CLK);
+		_CLR_PIN(SCK);
 		_delay_us(1);
-		_CHG(DIN_P, DIN, (in >> (7-i)) & 1);
+		_CHG_PIN(SDI, (in >> (7-i)) & 1);
 		_delay_us(1);
-		_SET(CLK_P, CLK);
+		_SET_PIN(SCK);
 		_delay_us(1);
 	}
 
 	if(hold == FALSE)
-		_SET(CS_P, CS);
+		_SET_PIN(CS_SCR);
 }
 

@@ -1,6 +1,14 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
+typedef enum{FALSE=0, TRUE} boolean;
+
+#define _SET_PIN(p)		_SET((*((p).port)).OUT, ((p).pin))
+#define _CLR_PIN(p)		_CLR((*((p).port)).OUT, ((p).pin))
+#define _TOG_PIN(p)		_TOG((*((p).port)).OUT, ((p).pin))
+#define _CHG_PIN(p, v)	_CHG((*((p).port)).OUT, ((p).pin), v)
+#define _GET_PIN(p)		_GET((*((p).port)).IN, ((p).pin))
+
 #define _SET(B, b)		(B) |= 1<<(b)
 #define _CLR(B, b)		(B) &= ~(1<<(b))
 #define _TOG(B, b)		(B) ^= 1<<(b)

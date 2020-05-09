@@ -1,6 +1,7 @@
 #ifndef AD8231_H_
 #define AD8231_H_
 
+#include "setup.h"
 #include <avr/io.h>
 #include "utils.h"
 
@@ -16,7 +17,7 @@ typedef enum{
 } AD8231_gain_t;
 
 
-void AD8231_changeGain(AD8231_gain_t gain, unsigned char csPin);
+void AD8231_changeGain(AD8231_gain_t gain, pin_t csPin);
 
 
 #endif /* AD8231_H_ */
