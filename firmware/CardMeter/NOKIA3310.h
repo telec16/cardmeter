@@ -27,6 +27,7 @@ void clearLCD();
 void setCoord(uint8_t x, uint8_t y);
 
 void putChar(char chr, boolean space);
+void putCharAt(char chr, uint8_t posX, uint8_t posY);
 void putString(char *str, uint8_t posX, uint8_t posY);
 
 void putPicture(uint8_t picture[], uint8_t posX, uint8_t posY, uint8_t sizeX, uint8_t sizeY);

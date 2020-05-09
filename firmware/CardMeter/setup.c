@@ -25,8 +25,8 @@
 
 // Serial
 const pin_t SCK = {.pin=3, .port=&VPORTA}; //PA3
-const pin_t SDO = {.pin=2, .port=&VPORTA}; //PA2
-const pin_t SDI = {.pin=1, .port=&VPORTA}; //PA1
+const pin_t SDI = {.pin=2, .port=&VPORTA}; //PA2
+const pin_t SDO = {.pin=1, .port=&VPORTA}; //PA1
 const pin_t CS_SCR = {.pin=1, .port=&VPORTC}; //PC1
 const pin_t CS_ADC = {.pin=0, .port=&VPORTC}; //PC0
 
@@ -53,11 +53,11 @@ void clockSetup()
 void pinSetup()
 {
 #if defined (V1)
-	VPORTA.DIR = 0b00111010;
+	VPORTA.DIR = 0b01111010;
 	VPORTB.DIR = 0b00000000;
 	VPORTC.DIR = 0b00001111;
 #elif defined (V2)
-	VPORTA.DIR = 0b00111010;
+	VPORTA.DIR = 0b01111010;
 	VPORTB.DIR = 0b00110000;
 	VPORTC.DIR = 0b00001111;
 #elif defined (V4)
@@ -65,9 +65,11 @@ void pinSetup()
 	VPORTB.DIR = 0b00100000;
 	VPORTC.DIR = 0b00001110;
 #elif defined (V5_F)
-	VPORTA.DIR = 0b00111010;
+	VPORTA.DIR = 0b01111010;
 	VPORTB.DIR = 0b00010000;
 	VPORTC.DIR = 0b00001111;
+	PORTA.PIN2CTRL = PULLUPEN;
+	VPORTC.OUT = 0x3;
 #endif
 	
 	PORTB.PIN0CTRL = PULLUPEN | INVEN;

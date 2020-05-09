@@ -15,7 +15,7 @@ typedef enum{
 } LTC6911_gain_t;
 
 
-void LTC6911_changeGain(LTC6911_gain_t gain);
+void LTC6911_gain(LTC6911_gain_t gain);
 
 
 #endif /* LTC6911_H_ */

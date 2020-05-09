@@ -11,7 +11,7 @@ void setValue(uint8_t val)
 	GAIN_P = (GAIN_P & ~GAIN_MASK) | ((val << GAIN_PIN) & GAIN_MASK);
 }
 
-void AD8231_changeGain(AD8231_gain_t gain, pin_t csPin)
+void AD8231_gain(AD8231_gain_t gain, pin_t csPin)
 {
 	_CLR_PIN(csPin);
 	

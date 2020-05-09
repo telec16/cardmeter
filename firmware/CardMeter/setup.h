@@ -94,8 +94,8 @@ typedef struct {
 
 // Serial
 extern const pin_t SCK; //PA3
-extern const pin_t SDO; //PA2
-extern const pin_t SDI; //PA1
+extern const pin_t SDI; //PA2
+extern const pin_t SDO; //PA1
 extern const pin_t CS_SCR; //PC1
 extern const pin_t CS_ADC; //PC0
 

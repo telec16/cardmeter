@@ -16,7 +16,7 @@ uint16_t LTC2315_readAll(pin_t cs)
 		_SET_PIN(SCK);
 		_delay_us(1);
 		if((1 <= i) && (i <= 12))
-			data = (data<<1) | _GET_PIN(SDO);
+			data = (data<<1) | _GET_PIN(SDI);
 	}
 
 	_SET_PIN(cs);

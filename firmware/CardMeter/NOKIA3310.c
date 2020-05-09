@@ -138,8 +138,6 @@ void putPicture(uint8_t picture[], uint8_t posX, uint8_t posY, uint8_t sizeX, ui
 
 void putString(char *str, uint8_t posX, uint8_t posY)
 {
-	posX = _CLIP(0, posX, LCD_W);
-	posY = _CLIP(0, posY, LCD_H);
 	setCoord(posX, posY);
 	
 	while(*str)
@@ -149,13 +147,18 @@ void putChar(char chr, boolean space)
 {
 	uint8_t i;
 	for(i = 0; i<5; i++)
-		writebyte(asciiTable[(chr-32)*5+i], DAT, TRUE);
+	writebyte(asciiTable[(chr-32)*5+i], DAT, TRUE);
 	
 	if(space)
-		writebyte(0, DAT, FALSE);
+	writebyte(0, DAT, FALSE);
 	
 	_SET_PIN(CS_SCR);
 	_delay_us(1);
+}
+void putCharAt(char chr, uint8_t posX, uint8_t posY)
+{
+	setCoord(posX, posY);
+	putChar(chr, FALSE);
 }
 
 /*
@@ -189,7 +192,7 @@ void writebyte(uint8_t in, DC_t dc, boolean hold)
 	{
 		_CLR_PIN(SCK);
 		_delay_us(1);
-		_CHG_PIN(SDI, (in >> (7-i)) & 1);
+		_CHG_PIN(SDO, (in >> (7-i)) & 1);
 		_delay_us(1);
 		_SET_PIN(SCK);
 		_delay_us(1);

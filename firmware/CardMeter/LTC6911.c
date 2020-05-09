@@ -11,7 +11,7 @@ void setValue(uint8_t val)
 	GAIN_P = (GAIN_P & ~GAIN_MASK) | ((val << GAIN_PIN) & GAIN_MASK);
 }
 
-void LTC6911_changeGain(LTC6911_gain_t gain)
+void LTC6911_gain(LTC6911_gain_t gain)
 {
 	switch(gain){
 		case LTC6911_OPEN:

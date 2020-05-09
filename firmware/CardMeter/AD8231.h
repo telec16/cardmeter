@@ -17,7 +17,7 @@ typedef enum{
 } AD8231_gain_t;
 
 
-void AD8231_changeGain(AD8231_gain_t gain, pin_t csPin);
+void AD8231_gain(AD8231_gain_t gain, pin_t csPin);
 
 
 #endif /* AD8231_H_ */
