@@ -15,13 +15,14 @@ uint16_t LTC2315_readAll(pin_t cs)
 		_delay_us(1);
 		_SET_PIN(SCK);
 		_delay_us(1);
-		if((1 <= i) && (i <= 12))
-			data = (data<<1) | _GET_PIN(SDI);
+		data = (data<<1) | _GET_PIN(SDI);
 	}
+	_CLR_PIN(SCK);
+	_delay_us(1);
 
 	_SET_PIN(cs);
 
-	return data;
+	return (data&0xFFE)>>1;
 }
 
 
