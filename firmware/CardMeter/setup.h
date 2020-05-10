@@ -1,7 +1,7 @@
 #ifndef SETUP_H_
 #define SETUP_H_
 
-#define F_CPU 8000000LL
+#define F_CPU 20000000LL
 #include <avr/io.h>
 #include <util/delay.h>
 

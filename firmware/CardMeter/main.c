@@ -1,60 +1,72 @@
-#include "setup.h"
-#include <stdlib.h>
-#include <avr/io.h>
-#include "utils.h"
-#include "NOKIA3310.h"
-#include "AD8231.h"
-#include "LTC2315.h"
+#include "main.h"
 
+volatile config_t config = {
+	.menu = UI_ROOT,
+	.action = ACT_NONE,
+	.gain = AD8231_G1,
+	.timebase = 0,
+	.offset = 0
+};
+
+volatile data_t data = {
+	.raw0 = 0,
+	.ch0 = 0.0
+};
+
+#define RES_DIV (10.0/480.0)
+
+const float range_table[8] = {
+	LTC2315_REF / (RES_DIV *   1) / 2.0,
+	LTC2315_REF / (RES_DIV *   2) / 2.0,
+	LTC2315_REF / (RES_DIV *   4) / 2.0,
+	LTC2315_REF / (RES_DIV *   8) / 2.0,
+	LTC2315_REF / (RES_DIV *  16) / 2.0,
+	LTC2315_REF / (RES_DIV *  32) / 2.0,
+	LTC2315_REF / (RES_DIV *  64) / 2.0,
+	LTC2315_REF / (RES_DIV * 128) / 2.0
+};
+const float step_table[8] = {
+	LTC2315_STEP / (RES_DIV *   1) / 2.0,
+	LTC2315_STEP / (RES_DIV *   2) / 2.0,
+	LTC2315_STEP / (RES_DIV *   4) / 2.0,
+	LTC2315_STEP / (RES_DIV *   8) / 2.0,
+	LTC2315_STEP / (RES_DIV *  16) / 2.0,
+	LTC2315_STEP / (RES_DIV *  32) / 2.0,
+	LTC2315_STEP / (RES_DIV *  64) / 2.0,
+	LTC2315_STEP / (RES_DIV * 128) / 2.0
+};
 
 int main(void)
 {
-	uint8_t tempo=0;
-	uint16_t data, ch;
-	AD8231_gain_t gain = AD8231_G1;
-	
 	char buf[16];
 	
 	clockSetup();
 	pinSetup();
 	screenSetup();
-	AD8231_gain(gain, CS_GAIN);
+	AD8231_gain(config.gain, CS_GAIN);
 
+	/* LCD tests
 	_delay_ms(100);
 	putString("Hey !", 5*LCD_CW, 0);
 	_delay_ms(100);
 	testLCD();
+	clearLCD();//*/
 
     while (1) 
     {
-		putCharAt((tempo++%2)?'@':' ', 12*LCD_CW, 0);
+		data.raw0 = LTC2315_readAll(CS_ADC);
+		
+		data.ch0 = ((float)data.raw0 - (float)config.offset) * step_table[config.gain];
+		
+		scanBtn();
 
-		data = LTC2315_readAll(CS_ADC);
-		
-		putString("              ", 0, 2);
-		
-		itoa(data, buf, 16);
-		putString(buf, 0, 2);
-		
-		ch = (uint16_t)(((float)data) * LTC2315_STEP * 1000.0);
-			
-		itoa(ch, buf, 10);
-		putString(buf, 0, 3);
-		
+		if(config.action == ACT_OFFSET){
+			config.offset = data.raw0;
+			config.action = ACT_NONE;
+		}
 
-		if(_SW1) gain--;
-		if(_SW2) gain++;
-		if(_SW3) ;
-		if(_SW4) ;
-
-		gain = _CLIP(0, gain, 7);
-		AD8231_gain(gain, CS_GAIN);
+		drawUI();
 		
-		putString("Gain:    ", 0, 1);
-		itoa(gain, buf, 10);
-		putString(buf, 7*LCD_CW, 1);
-		
-		_delay_ms(1000);
+		_delay_ms(100);
     }
 }
-

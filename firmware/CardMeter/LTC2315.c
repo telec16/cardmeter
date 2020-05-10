@@ -22,7 +22,7 @@ uint16_t LTC2315_readAll(pin_t cs)
 
 	_SET_PIN(cs);
 
-	return (data&0xFFE)>>1;
+	return (data>>1)&0xFFF;
 }
 
 
