@@ -713,7 +713,7 @@
     )
   )
 
-  (module perso:NOKIA_3310_LCD (layer F.Cu) (tedit 5C2BAC73) (tstamp 5C3625C3)
+  (module telec:NOKIA_3310_LCD (layer F.Cu) (tedit 5C2BAC73) (tstamp 5C3625C3)
     (at 68.961 16.764)
     (path /5C1BFA9E)
     (fp_text reference U30 (at 5.588 2.413 90) (layer F.SilkS)
@@ -790,7 +790,7 @@
     (pad "" thru_hole circle (at -17.25 6) (size 2 2) (drill 2) (layers *.Cu))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2DB6) (tstamp 5C4A1986)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2DB6) (tstamp 5C4A1986)
     (at 44.196 37.465)
     (path /5C3C929F)
     (fp_text reference TP26 (at 0 4.826 90) (layer F.SilkS)
@@ -1282,7 +1282,7 @@
     )
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2DC0) (tstamp 5C57506E)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2DC0) (tstamp 5C57506E)
     (at 42.164 38.989)
     (path /5C2C9A7A)
     (fp_text reference TP210 (at 0 5.461 90) (layer F.SilkS)
@@ -2404,7 +2404,7 @@
     )
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A1954)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A1954)
     (at 13.97 31.242)
     (path /5C299961)
     (fp_text reference TP10 (at 2.667 1.905) (layer F.SilkS)
@@ -2417,7 +2417,7 @@
       (net 6 GNDREF))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C293EFC)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C293EFC)
     (at 20.32 35.052)
     (path /5C1FF927)
     (fp_text reference TP11 (at 0.762 0.254) (layer F.SilkS)
@@ -2430,7 +2430,7 @@
       (net 29 /V1))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A195E)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A195E)
     (at 20.32 27.432)
     (path /5C1FF9BD)
     (fp_text reference TP12 (at 0.889 0.254) (layer F.SilkS)
@@ -2443,7 +2443,7 @@
       (net 30 /V2))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C2916DF)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C2916DF)
     (at 20.32 15.621)
     (path /5C1FFAFD)
     (fp_text reference TP14 (at 2.921 2.159) (layer F.SilkS)
@@ -2456,7 +2456,7 @@
       (net 20 /R))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2DE9) (tstamp 5C49021A)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2DE9) (tstamp 5C49021A)
     (at 35.306 41.91)
     (path /5C2F6904)
     (fp_text reference TP20 (at 0 4.826 90) (layer F.SilkS)
@@ -2469,7 +2469,7 @@
       (net 39 /CLK))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2DCD) (tstamp 5C48FC07)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2DCD) (tstamp 5C48FC07)
     (at 39.878 40.005)
     (path /5C2F6698)
     (fp_text reference TP21 (at 0 4.699 90) (layer F.SilkS)
@@ -2482,7 +2482,7 @@
       (net 40 /MISO))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2DD8) (tstamp 5C4A1972)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2DD8) (tstamp 5C4A1972)
     (at 37.465 40.894)
     (path /5C2F67EE)
     (fp_text reference TP22 (at 0 4.699 90) (layer F.SilkS)
@@ -2495,7 +2495,7 @@
       (net 41 /MOSI))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2E1C) (tstamp 5C4A1977)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2E1C) (tstamp 5C4A1977)
     (at 28.194 40.767)
     (path /5C2F6878)
     (fp_text reference TP23 (at 0 4.826 90) (layer F.SilkS)
@@ -2508,7 +2508,7 @@
       (net 42 /~ADC_CS))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2DAA) (tstamp 5C5759BC)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2DAA) (tstamp 5C5759BC)
     (at 46.101 35.56)
     (path /5C3C9094)
     (fp_text reference TP24 (at 0 4.953 90) (layer F.SilkS)
@@ -2521,7 +2521,7 @@
       (net 43 /~SCR_CS))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2E05) (tstamp 5C4A1981)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2E05) (tstamp 5C4A1981)
     (at 31.242 41.91)
     (path /5C2F660A)
     (fp_text reference TP25 (at 0 4.826 90) (layer F.SilkS)
@@ -2534,7 +2534,7 @@
       (net 44 /~ADC_RST))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2E29) (tstamp 5C4A198B)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2E29) (tstamp 5C4A198B)
     (at 27.686 38.481)
     (path /5C2F6A24)
     (fp_text reference TP27 (at -1.143 4.572 90) (layer F.SilkS)
@@ -2547,7 +2547,7 @@
       (net 22 /~STANDBY))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2E3A) (tstamp 5C492056)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2E3A) (tstamp 5C492056)
     (at 30.353 39.751)
     (path /5C2F64E8)
     (fp_text reference TP28 (at -0.762 4.953 90) (layer F.SilkS)
@@ -2560,7 +2560,7 @@
       (net 27 /~RDY))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C2D2DF9) (tstamp 5C4A1995)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C2D2DF9) (tstamp 5C4A1995)
     (at 33.274 40.513)
     (path /5C2F6992)
     (fp_text reference TP29 (at 0 4.826 90) (layer F.SilkS)
@@ -2573,7 +2573,7 @@
       (net 24 /~SYNC))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A199A)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A199A)
     (at 66.04 11.557)
     (path /5C1FC66D)
     (fp_text reference TP30 (at 3.048 2.032) (layer F.SilkS)
@@ -2586,7 +2586,7 @@
       (net 10 "Net-(C31-Pad1)"))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A199F)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A199F)
     (at 20.32 20.828)
     (path /5C1FFA2F)
     (fp_text reference TP130 (at 3.429 2.032) (layer F.SilkS)
@@ -2599,7 +2599,7 @@
       (net 19 /I+))
   )
 
-  (module perso:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A19A4)
+  (module telec:Probing_pad (layer F.Cu) (tedit 5C249B65) (tstamp 5C4A19A4)
     (at 20.32 17.78)
     (path /5C1FFA9B)
     (fp_text reference TP131 (at 3.429 2.032) (layer F.SilkS)
